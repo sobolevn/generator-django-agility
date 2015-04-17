@@ -1,0 +1,39 @@
+# Check http://editorconfig.org for more information
+# This is the main config file for this project:
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab
+trim_trailing_whitespace = true
+end_of_line = lf
+insert_final_newline = true
+
+
+[*.{json, yml, xml}]  # 2 spaces for static files:
+indent_style = space
+indent_size = 2
+
+
+[*.py]  # Python files should have 4 spaces as indent:
+indent_style = space
+indent_size = 4
+
+
+[*.{js,css}]  # JS and CSS files should also have 2 spaces:
+indent_style = space
+indent_size = 2
+
+[*.min.{js,css}]  # Do not reformat min files:
+indent_style = ignore
+trim_trailing_whitespace = false
+insert_final_newline = ignore
+
+
+[README.{md, txt, rst}]  # Do not reformat READMEs
+indent_style = ignore
+indent_size = ignore
+
+[README]
+indent_style = ignore
+indent_size = ignore
