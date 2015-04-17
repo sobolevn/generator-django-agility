@@ -1,4 +1,5 @@
-# generator-django-agility [![Build Status](https://secure.travis-ci.org/sobolevn/generator-django-agility.png?branch=master)](https://travis-ci.org/sobolevn/generator-django-agility)
+# generator-django-agility 
+[![Build Status](https://secure.travis-ci.org/sobolevn/generator-django-agility.png?branch=master)](https://travis-ci.org/sobolevn/generator-django-agility)
 
 > [Yeoman](http://yeoman.io) generator
 
