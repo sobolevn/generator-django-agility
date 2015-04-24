@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*-
+
+"""
+This file determines all the settings that must define the development server.
+Basically this is a local file. It is excluded from the VCS by default.
+
+SECURITY WARNING: don't run with debug turned on in production!
+"""
+
+# Mind the proper import, use the right module!
+from <%= agility.projectName %>.settings.common import MIDDLEWARE_CLASSES, BASE_DIR, INSTALLED_APPS
+import os
+
+__author__ = '<%= agility.author %>'
+
+
+# Setting the development status:
+
+DEBUG = True
+
+TEMPLATE_DEBUG = True
+
+FRONTEND_DEBUG = True
+
+ALLOWED_HOSTS = []
+
+
+# Template Debug settings:
+# http://django-debug-toolbar.readthedocs.org/en/latest/index.html
+
+INSTALLED_APPS = INSTALLED_APPS + (
+    'debug_toolbar',
+    'template_timings_panel',
+)
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+
+DEBUG_TOOLBAR_PANELS = [
+    # django-debug-toolbar:
+    'debug_toolbar.panels.sql.SQLPanel',
+
+    # django-debug-toolbar-template-timings:
+    # https://github.com/orf/django-debug-toolbar-template-timings
+    'template_timings_panel.panels.TemplateTimings.TemplateTimings',
+
+    # django-debug-toolbar:
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+]
+
+# Network security and SSL:
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+
+    # Uncomment next line and run 'runserver 0.0.0.0:8000' for production test:
+    # '192.168.1.44'
+]
+
+SESSION_COOKIE_SECURE = False
+
+CSRF_COOKIE_SECURE = False
+
+
+# Static files:
+# https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-STATICFILES_DIRS
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+
+    # Adding frontend package managers in development:
+    os.path.join(BASE_DIR, 'node_modules'),
+    os.path.join(BASE_DIR, 'bower_components'),
+)
+
+# Adding STATIC_ROOT to collect static files via 'collectstatic'.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+# Media files root:
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Backups (django-dbbackup):
+# DBBACKUP_SERVER_NAME = 'development'

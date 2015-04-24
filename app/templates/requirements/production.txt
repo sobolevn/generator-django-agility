@@ -1,0 +1,5 @@
+# Running base dependencies:
+-r _base.txt
+
+# gunicorn server:
+gunicorn

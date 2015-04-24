@@ -1,0 +1,18 @@
+# The humans responsible & technology colophon
+# http://humanstxt.org/
+
+# TEAM
+
+  Name: <%= agility.author %>
+  Email: <%= agility.email %>
+  Github: <%= agility.github %>
+  Position:
+  Twitter:
+
+
+# TECHNOLOGY COLOPHON
+
+  Last update: Date
+  Language: English / Russian
+  Doctype: HTML5
+  Technologies: HTML5, CSS3, Javascript, Python, Django, Yeoman

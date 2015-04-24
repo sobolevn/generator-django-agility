@@ -1,0 +1,79 @@
+# -*- coding: utf-8 -*-
+
+"""
+Main URL mapping configuration file.
+Include other URLConfs from external apps using method include().
+
+It is also a good practice to keep a single URL to the root index page.
+
+This examples uses Django's default media files serving technique in development.
+"""
+
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
+from django.conf import settings
+from django.views.generic import TemplateView
+
+__author__ = '<%= agility.author %>'
+
+admin.autodiscover()
+
+urlpatterns = patterns(
+    '',
+
+    # django-admin-tools:
+    url(r'^admin_tools/', include('admin_tools.urls')),
+
+    # django-admin:
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+
+    # text and xml static files:
+    url(r'^robots\.txt$', TemplateView.as_view(
+        template_name='txt/robots.txt',
+        content_type='text/plain'
+    )),
+    url(r'^humans\.txt$', TemplateView.as_view(
+        template_name='txt/humans.txt',
+        content_type='text/plain'
+    )),
+    url(r'^sitemap\.xml$', TemplateView.as_view(
+        template_name='txt/sitemap.xml',
+        content_type='application/xml'
+    )),
+    url(r'^crossdomain\.xml$', TemplateView.as_view(
+        template_name='txt/crossdomain.xml',
+        content_type='application/xml'
+    )),
+
+    # apps' urls:
+    # import them like this, and in template use: {% url 'your_app:index' %}
+    # url(r'^prefix/
+    ', include('your_app.urls', namespace='your_app')),
+
+    # index page:
+    # url(r'^$', 'your_app.view.index', name='index'),
+)
+
+# Customize default error views:
+# https://docs.djangoproject.com/en/1.7/topics/http/views/#customizing-error-views
+
+# handler400 = 'your_app.views.error_handler'
+# handler403 = 'your_app.views.error_handler'
+# handler404 = 'your_app.views.error_handler'
+# handler500 = 'your_app.views.error_handler'
+
+
+# This urlconf is for development use only:
+if settings.DEBUG:
+
+    # Debug Toolbar Urls:
+    import debug_toolbar
+    urlpatterns += patterns(
+        '',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
+
+    # Media files serving:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

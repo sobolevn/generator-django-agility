@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+"""
+<%= agilityStartApp.appName %> models module.
+"""
+
+from django.db import models
+
+__author__ = '<%= agilityStartApp.author %>'
+
+# Create your models here:

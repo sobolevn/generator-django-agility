@@ -1,0 +1,6 @@
+# Running base dependencies:
+-r _base.txt
+
+# Django web-debug and template timings:
+django-debug-toolbar==1.2.2
+django-debug-toolbar-template-timings==0.6.4

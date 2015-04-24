@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>First app</title>
+
+	<link rel="stylesheet" href="{% static 'first_app/css/style.css' %}"
+</head>
+<body>
+	<a href="{% url 'first_app:index' %}">{% url 'first_app:index' %}</a>
+</body>
+</html>

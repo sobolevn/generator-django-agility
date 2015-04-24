@@ -1,0 +1,54 @@
+# -*- coding: utf-8 -*-
+
+"""
+This file determines all the settings used in production.
+This file is required and if development.py is present these values are overridden.
+"""
+
+from <%= agility.projectName %>.settings.common import BASE_DIR
+import os
+
+__author__ = '<%= agility.author %>'
+
+
+# Production flags:
+
+DEBUG = False
+
+TEMPLATE_DEBUG = False
+
+FRONTEND_DEBUG = False
+
+
+# Network security and SSL:
+
+ALLOWED_HOSTS = [
+    # This setting is required by the 'django-dbbackup' app:
+    # 'django-dbbackup'
+]
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+
+# Static files:
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR, 'node_modules'),  # Adding NPM modules in development
+)
+
+# This extra directory is used to contain both 'static' and 'media' folders.
+# The reason is: directory access security settings.
+FILES = os.path.join(BASE_DIR, 'files')
+
+# Adding STATIC_ROOT to collect static files via 'collectstatic'
+STATIC_ROOT = os.path.join(FILES, 'static_root')
+
+# Media path
+MEDIA_ROOT = os.path.join(FILES, 'media')
+
+
+# Backups:
+# DBBACKUP_SERVER_NAME = 'production'

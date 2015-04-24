@@ -1,5 +1,16 @@
 {
-  "name": "<%= agilityProjectName %>",
+  "name": "<%= agility.projectName %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "normalize.css": "^3.0.3",
+    "modernizr": "^2.8.3"
+  },
+  "author": {
+    "name": "<%= agility.author %>",
+    "email": "<%= agility.email %>",
+    "url": "<%= agility.github %>"
+  },
+  "private": <%= agility.projectPublic %>,
+  "license": "MIT"
 }

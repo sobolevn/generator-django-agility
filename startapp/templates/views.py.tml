@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+
+"""
+<%= agilityStartApp.appName %> views module.
+"""
+
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+__author__ = '<%= agilityStartApp.author %>'
+
+# Create your views here:
+
+
+def index(request):
+    if request and request.method == 'GET':
+        return render_to_response('<%= agilityStartApp.appName %>/index.html', RequestContext(request))

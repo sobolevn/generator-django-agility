@@ -153,10 +153,25 @@ node_modules
 npm-debug.log
 
 #####=== Custom ===#####
+# Python-based extras:
+/build/     # Excluding only /build folder in the project root
+
 # IDEs:
 .idea/
 
-# Local files:
-dj/
-tmp/
+# Directories:
+static_root/
+secret/
+media/
+
+# File types:
+*.psql
+*.sqlite3
+*.mysql
+*.sql
+*.secret    # Configuration file with private data
+
+# Local settings files:
+*local.py
+*development.py
 .yo-rc.json

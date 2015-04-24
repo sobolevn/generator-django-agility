@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+"""
+<%= agilityStartApp.appName %> forms module.
+"""
+
+from django import forms
+
+__author__ = '<%= agilityStartApp.author %>'
+
+# Place your forms here:

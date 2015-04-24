@@ -1,0 +1,11 @@
+# Running development dependencies:
+-r development.txt
+
+# You can run different tests:
+# coverage
+# nose
+# selenium
+
+# Style guides and tests:
+# pylint>=1.4.3
+# pep8>=1.6.2

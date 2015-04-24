@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+
+"""
+<%= agilityStartApp.appName %> URL routing.
+"""
+
+from django.conf.urls import patterns, url
+
+__author__ = '<%= agilityStartApp.author %>'
+
+# Place your URLs here:
+
+urlpatterns = patterns(
+    '',
+    url(r'^$', '<%= agilityStartApp.appName %>.views.index', name='index'),
+)

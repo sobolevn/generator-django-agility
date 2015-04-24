@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+
+"""
+This is a django-split-settings main file.
+
+For more information read this:
+https://github.com/2general/django-split-settings
+"""
+
+from split_settings.tools import optional, include
+
+__author__ = '<%= agility.author %>'
+
+# To change settings file: runserver --settings=<%= agility.projectName %>.other_settings
+
+include(
+    'common.py',
+    'production.py',
+    optional('development.py'),
+
+    scope=locals()
+)
+

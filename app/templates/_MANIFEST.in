@@ -1,0 +1,9 @@
+global-include *.py
+global-exclude *.pyc
+
+# recursive-exclude tests *.py
+# recursive-exclude tests *.pyc
+
+include LICENSE
+include CONTRIBUTING.md
+include README.md

@@ -1,0 +1,17 @@
+# Django version 1.7 (not tested with 1.8 yet):
+Django==1.7.7
+
+# Split settings:
+django-split-settings==0.1.1
+
+# Django pretty admin panel:
+django-admin-tools==0.5.2
+
+# Backups:
+# django-dbbackup==2.0.4
+
+# Documentation:
+# pip install Sphinx
+
+# Python social auth:
+# python-social-auth==0.2.1

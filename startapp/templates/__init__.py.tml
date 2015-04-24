@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+
+"""
+Created with django-agility: https://github.com/sobolevn/generator-django-agility
+
+This app is a part of <%= agilityStartApp.projectName %> project.
+
+This app (or module) is build to be reusable or self-contained.
+This pattern requires to have all the module's files in the module's folder.
+
+Future templates should be added inside the 'app_name/templates/app_name' folder
+and extend 'app_name/templates/app_name/base.html' template.
+There is an extra 'app_name' directory inside module's 'template' folder to solve name collisions.
+
+All the static files also should be located inside the module's 'static' folder.
+It is a good practise to make builds of static files:
+ * concatenating all static files into one and minimizing it afterwards
+ * minimizing your images without quality loss
+ * appending version to the filename to solve the 'caching problem'
+ * making partial builds of third-party libs such as: jQuery, Bootstrap, Modernizr and so on
+ * using require.js (with or without r.js) or browserify for javascript development
+
+Some files might be outside the module's folder:
+ * css-preprocessor frameworks: Compass, Bourbon and etc
+    (locate these files inside 'less', 'scss' or 'sass' folder in the project's root)
+ * full javascript and css libraries used in the development before the production builds
+
+To resolve static files use: {% static '<%= agilityStartApp.appName %>/css/style.css' %}
+To resolve urls use: {% url '<%= agilityStartApp.appName %>:index' %}
+"""
+
+__author__ = '<%= agilityStartApp.author %>'
+__version__ = '0.0.0'
