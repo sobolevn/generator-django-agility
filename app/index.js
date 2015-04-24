@@ -205,7 +205,7 @@ module.exports = yeoman.generators.Base.extend({
 
     python: function(){
       function destinationFilename(projectName, filename){
-        return path.join(projectName, filename.replace('.tml', ''))
+        return path.join(projectName, filename.replace('.tml', ''));
       }
 
       var djangoDirectory = 'django_server';
@@ -275,13 +275,14 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     prepocessors: function(){
-      if (!this.agility.preprocessor || this.agility.preprocessorType === 'none')
+      if (!this.agility.preprocessor || this.agility.preprocessorType === 'none'){
         return;
+      }
 
       var type = this.agility.preprocessorType;
 
       function destinationFilename(filename){
-        return path.join(type, filename + '.' + type)
+        return path.join(type, filename + '.' + type);
       }
 
       var preprocessorFiles = [

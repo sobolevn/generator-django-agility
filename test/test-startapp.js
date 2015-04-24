@@ -1,3 +1,5 @@
+/* global describe, it, before, require */
+
 'use strict';
 
 var path = require('path');
@@ -13,10 +15,14 @@ describe('DjangoAgility:startapp', function () {
   before(function(done){
     helpers.setUpTestDirectory(path.join(__dirname, 'tmp'));
     helpers.testDirectory(path.join(__dirname, 'tmp'), function(err){
-      if (err) return done(err);
+      if (err){
+        return done(err);
+      }
+
       agility = helpers.createGenerator('django-agility:startapp', ['../../startapp'], djangoAppName);
       helpers.mockPrompt(agility, prompts);
       done();
+
     }.bind(this));
   });
 
@@ -40,10 +46,11 @@ describe('DjangoAgility:startapp', function () {
     agility.run(function(){
       var expected = [];
       for (var i = 0; i < files.length; i++){
-        expected.push(path.join(agility.agilityStartApp.appName, files[i]))
+        expected.push(path.join(agility.agilityStartApp.appName, files[i]));
       }
 
-      done(assert.file(expected));
+      assert.file(expected);
+      done();
     });
   });
 
@@ -56,20 +63,21 @@ describe('DjangoAgility:startapp', function () {
     agility.run(function(){
       var expected = [];
       for (var i = 0; i < files.length; i++){
-        expected.push(path.join(files[i], agility.agilityStartApp.appName))
+        expected.push(path.join(files[i], agility.agilityStartApp.appName));
       }
 
-      done(assert.file(expected));
+      assert.file(expected);
+      done();
     });
   });
 
-  describe("files' contents", function(){
-    it("tests author's name", function(done){
+  describe('files\' contents', function(){
+    it('tests author\'s name', function(done){
       agility.run(function() {
         var fileName = path.join(agility.agilityStartApp.appName, '__init__.py');
 
         // __author__ = '<%= agilityStartApp.author %>':
-        var authorPattern = "__author__ = '" + agility.agilityStartApp.author + "'";
+        var authorPattern = '__author__ = \'' + agility.agilityStartApp.author + '\'';
         assert.fileContent(fileName, new RegExp(authorPattern, 'g'));
 
         done();

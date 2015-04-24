@@ -1,9 +1,10 @@
+/* global describe, it, before, beforeEach, require, __dirname */
+
 'use strict';
 
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
-var os = require('os');
 var fs = require('fs');
 
 describe('django-agility:app', function(){
@@ -114,9 +115,13 @@ describe('django-agility:app', function(){
 
   beforeEach(function(done){
     helpers.testDirectory(path.join(__dirname, 'tmp'), function(err){
-      if (err) return done(err);
+      if (err){
+        return done(err);
+      }
+
       agility = helpers.createGenerator('django-agility:app', ['../../app'], false, options);
       done();
+
     }.bind(this));
   });
 
@@ -167,26 +172,26 @@ describe('django-agility:app', function(){
     });
   });
 
-  describe("files' contents", function(){
-    it("tests author's name", function(done){
-    helpers.mockPrompt(agility, promptsWithoutPreprocessor);
-    agility.run(function(){
-      var pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-      assert(pkg.author.name, agility.agility.author);
-      assert(pkg.author.email, agility.agility.email);
-      assert(pkg.name, agility.agility.projectName);
+  describe('files\' contents', function(){
+    it('tests author\'s name', function(done){
+      helpers.mockPrompt(agility, promptsWithoutPreprocessor);
+      agility.run(function(){
+        var pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+        assert(pkg.author.name, agility.agility.author);
+        assert(pkg.author.email, agility.agility.email);
+        assert(pkg.name, agility.agility.projectName);
 
-      var bower = JSON.parse(fs.readFileSync('bower.json', 'utf8'));
-      assert(bower.author.name, agility.agility.author);
-      assert(bower.author.email, agility.agility.email);
-      assert(bower.name, agility.agility.projectName);
+        var bower = JSON.parse(fs.readFileSync('bower.json', 'utf8'));
+        assert(bower.author.name, agility.agility.author);
+        assert(bower.author.email, agility.agility.email);
+        assert(bower.name, agility.agility.projectName);
 
-      var pattern = "__author__ = '" + agility.agility.author + "'";
-      assert.fileContent('manage.py', new RegExp(pattern, 'g'));
+        var pattern = '__author__ = \'' + agility.agility.author + '\'';
+        assert.fileContent('manage.py', new RegExp(pattern, 'g'));
 
-      done();
+        done();
+      });
     });
-  });
   });
 
 });

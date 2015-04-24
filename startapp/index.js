@@ -68,7 +68,7 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     python: function(){
       function destinationFilename(directoryName, filename){
-        return path.join(directoryName, filename.replace('.tml', ''))
+        return path.join(directoryName, filename.replace('.tml', ''));
       }
 
       var djangoFiles = [
