@@ -63,4 +63,18 @@ describe('DjangoAgility:startapp', function () {
     });
   });
 
+  describe("files' contents", function(){
+    it("tests author's name", function(done){
+      agility.run(function() {
+        var fileName = path.join(agility.agilityStartApp.appName, '__init__.py');
+
+        // __author__ = '<%= agilityStartApp.author %>':
+        var authorPattern = "__author__ = '" + agility.agilityStartApp.author + "'";
+        assert.fileContent(fileName, new RegExp(authorPattern, 'g'));
+
+        done();
+      });
+    });
+  });
+
 });

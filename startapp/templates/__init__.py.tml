@@ -3,8 +3,6 @@
 """
 Created with django-agility: https://github.com/sobolevn/generator-django-agility
 
-This app is a part of <%= agilityStartApp.projectName %> project.
-
 This app (or module) is build to be reusable or self-contained.
 This pattern requires to have all the module's files in the module's folder.
 
