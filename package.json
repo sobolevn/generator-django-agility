@@ -4,7 +4,7 @@
   "description": "Scaffolds out an agile Django project.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "sobolevn/generator-django-agility",
+  "repository": "https://github.com/sobolevn/generator-django-agility",
   "author": {
     "name": "Sobolev Nikita",
     "email": "mail@sobolevn.me",
