@@ -22,7 +22,8 @@ DEBUG = True
 
 FRONTEND_DEBUG = True
 
-TEMPLATES[0]['DEBUG'] = True
+for template in TEMPLATES:
+    template['OPTIONS']['debug'] = True
 
 ALLOWED_HOSTS = []
 

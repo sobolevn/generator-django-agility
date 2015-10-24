@@ -19,7 +19,8 @@ DEBUG = False
 
 FRONTEND_DEBUG = False
 
-TEMPLATES[0]['DEBUG'] = False
+for template in TEMPLATES:
+    template['OPTIONS']['debug'] = True
 
 
 # Network security and SSL:
