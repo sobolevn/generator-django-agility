@@ -1,6 +1,10 @@
 {
   "name": "generator-django-agility",
+<<<<<<< HEAD
   "version": "0.1.1",
+=======
+  "version": "0.1.0",
+>>>>>>> 5e602067534cd6d9768ba693bc3815c0af44c664
   "description": "Scaffolds out an agile Django project.",
   "license": "MIT",
   "main": "app/index.js",
