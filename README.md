@@ -4,7 +4,7 @@
 
 > [Yeoman](http://yeoman.io) generator
 
-![Django agility scaffolding generator screenshot](https://raw.github.com/sobolevn/generator-django-agility/screenshots/screenshots/yeoman-screeshot.png)
+![Django agility scaffolding generator screenshot](https://raw.githubusercontent.com/sobolevn/generator-django-agility/screenshots/screenshots/yeoman-screenshot.png)
 
 ## Getting Started
 
