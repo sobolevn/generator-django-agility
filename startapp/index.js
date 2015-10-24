@@ -85,8 +85,10 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     folders: function(){
-      mkdirp(path.join('static', this.agilityStartApp.appName));
-      mkdirp(path.join('templates', this.agilityStartApp.appName));
+      var app = this.agilityStartApp.appName;
+
+      mkdirp(path.join(app, 'static', app));
+      mkdirp(path.join(app, 'templates', app));
     }
   }
 });

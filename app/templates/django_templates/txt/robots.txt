@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /static/js/
-Disallow: /static/css/
+

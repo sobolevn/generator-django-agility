@@ -154,7 +154,8 @@ npm-debug.log
 
 #####=== Custom ===#####
 # Python-based extras:
-/build/     # Excluding only /build folder in the project root
+# Excluding only /build folder in the project root
+/build/
 
 # IDEs:
 .idea/
@@ -169,9 +170,11 @@ media/
 *.sqlite3
 *.mysql
 *.sql
-*.secret    # Configuration file with private data
+
+# Configuration file with private data
+*.secret
+secret.cfg
 
 # Local settings files:
 *local.py
 *development.py
-.yo-rc.json

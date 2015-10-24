@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-Writing tests is critically important. Place all your tests in this package.
 
 Read about writing tests here:
-https://docs.djangoproject.com/en/1.7/topics/testing/
+https://docs.djangoproject.com/en/1.8/topics/testing/
 
 Running PEP8 tests:
 http://pep8.readthedocs.org/en/latest/advanced.html
@@ -18,7 +17,8 @@ https://github.com/toastdriven/guide-to-testing-in-django
 Some helpful information:
 https://realpython.com/blog/python/testing-in-django-part-1-best-practices-and-examples/
 
-And read some extra information about 'best practices' in Python and Django testing.
+And read some extra information about 'best practices' in
+Python and Django testing.
 """
 
 from django.test import TestCase

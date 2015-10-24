@@ -6,7 +6,8 @@ Include other URLConfs from external apps using method include().
 
 It is also a good practice to keep a single URL to the root index page.
 
-This examples uses Django's default media files serving technique in development.
+This examples uses Django's default media
+files serving technique in development.
 """
 
 from django.conf.urls import patterns, include, url
@@ -18,8 +19,7 @@ __author__ = '<%= agility.author %>'
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     # django-admin-tools:
     url(r'^admin_tools/', include('admin_tools.urls')),
@@ -48,12 +48,11 @@ urlpatterns = patterns(
 
     # apps' urls:
     # import them like this, and in template use: {% url 'your_app:index' %}
-    # url(r'^prefix/
-    ', include('your_app.urls', namespace='your_app')),
+    # url(r'^prefix/', include('your_app.urls', namespace='your_app')),
 
     # index page:
-    # url(r'^$', 'your_app.view.index', name='index'),
-)
+    # url(r'^$', 'your_app.views.index', name='index'),
+]
 
 # Customize default error views:
 # https://docs.djangoproject.com/en/1.7/topics/http/views/#customizing-error-views
@@ -69,11 +68,11 @@ if settings.DEBUG:
 
     # Debug Toolbar Urls:
     import debug_toolbar
-    urlpatterns += patterns(
-        '',
+    urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
-    )
+    ]
 
     # Media files serving:
     from django.conf.urls.static import static
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -4,20 +4,40 @@
 This is a django-split-settings main file.
 
 For more information read this:
-https://github.com/2general/django-split-settings
+https://github.com/sobolevn/django-split-settings
 """
 
 from split_settings.tools import optional, include
+from components import CONFIG
 
 __author__ = '<%= agility.author %>'
 
-# To change settings file: runserver --settings=<%= agility.projectName %>.other_settings
 
-include(
-    'common.py',
-    'production.py',
-    optional('development.py'),
+# To change settings file:
+# `runserver --settings=<%= agility.projectName %>.other_settings`
 
-    scope=locals()
-)
+if CONFIG['DJANGO_SETTINGS_MODULE'] == '<%= agility.projectName %>.settings':
+    testing = bool(CONFIG['_DJANGO_TESTING'])
+
+    base_settings = [
+        'components/common.py',
+        # If you have any constants defined in your project,
+        # place it here:
+        # 'components/constants.py',
+    ]
+
+    if not testing:
+        settings = base_settings + [
+            'environments/production.py',
+            # Load local settings only if file exists:
+            optional('environments/development.py'),
+        ]
+
+    else:
+        settings = base_settings + [
+            'environments/testing.py',
+        ]
+
+    # Include settings for the current env:
+    include(*settings, scope=globals())
 

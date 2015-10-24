@@ -8,7 +8,9 @@ SECURITY WARNING: don't run with debug turned on in production!
 """
 
 # Mind the proper import, use the right module!
-from <%= agility.projectName %>.settings.common import MIDDLEWARE_CLASSES, BASE_DIR, INSTALLED_APPS
+from <%= agility.projectName %>.settings.components.common import (
+    MIDDLEWARE_CLASSES, BASE_DIR, INSTALLED_APPS, TEMPLATES
+)
 import os
 
 __author__ = '<%= agility.author %>'
@@ -18,9 +20,9 @@ __author__ = '<%= agility.author %>'
 
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 FRONTEND_DEBUG = True
+
+TEMPLATES[0]['DEBUG'] = True
 
 ALLOWED_HOSTS = []
 
@@ -63,9 +65,10 @@ DEBUG_TOOLBAR_PANELS = [
 
 INTERNAL_IPS = [
     '127.0.0.1',
+    'localhost',
 
     # Uncomment next line and run 'runserver 0.0.0.0:8000' for production test:
-    # '192.168.1.44'
+    # '192.168.your.ip'
 ]
 
 SESSION_COOKIE_SECURE = False
@@ -80,8 +83,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 
     # Adding frontend package managers in development:
-    os.path.join(BASE_DIR, 'node_modules'),
-    os.path.join(BASE_DIR, 'bower_components'),
+    # os.path.join(BASE_DIR, 'node_modules'),
+    # os.path.join(BASE_DIR, 'bower_components'),
 )
 
 # Adding STATIC_ROOT to collect static files via 'collectstatic'.
