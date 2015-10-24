@@ -1,6 +1,21 @@
 sudo: false
 language: node_js
 node_js:
+  - '4.2'
+  - '4.1'
   - 'iojs'
   - '0.12'
   - '0.10'
+
+branches:
+  only:
+    - master
+
+before_script:
+  - npm install -g gulp
+script: gulp test
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change

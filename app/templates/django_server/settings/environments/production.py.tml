@@ -5,7 +5,9 @@ This file determines all the settings used in production.
 This file is required and if development.py is present these values are overridden.
 """
 
-from <%= agility.projectName %>.settings.common import BASE_DIR
+from <%= agility.projectName %>.settings.components.common import (
+    BASE_DIR, TEMPLATES
+)
 import os
 
 __author__ = '<%= agility.author %>'
@@ -15,9 +17,10 @@ __author__ = '<%= agility.author %>'
 
 DEBUG = False
 
-TEMPLATE_DEBUG = False
-
 FRONTEND_DEBUG = False
+
+for template in TEMPLATES:
+    template['OPTIONS']['debug'] = True
 
 
 # Network security and SSL:

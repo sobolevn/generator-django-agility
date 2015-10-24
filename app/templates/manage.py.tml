@@ -11,13 +11,13 @@ import sys
 __author__ = '<%= agility.author %>'
 
 def main():
-    """
-    Main function.
-    :return: None
-    """
+    """ Main function. """
     from django.core.management import execute_from_command_line
 
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yeoman_django.settings')
+    if 'test' in sys.argv:
+        os.environ.setdefault('_DJANGO_TESTING', 'True')
+
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', '<%= agility.projectName %>.settings')
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':

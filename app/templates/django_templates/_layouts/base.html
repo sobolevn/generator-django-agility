@@ -6,36 +6,65 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, minimum-scale=1,initial-scale=1,maximum-scale=1">
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
 
+{#		<!-- Opera Speed Dial Favicon -->#}
+{#        <link rel="icon" type="image/png"#}
+{#              href="{% static 'build/images/fav/speeddial-160px.png' %}" />#}
+{#        <!-- Standard Favicon -->#}
+{#        <link rel="icon" type="image/x-icon" sizes="16x16 32x32"#}
+{#              href="{% static 'build/images/fav/favicon.png' %}" />#}
+{#        <!-- For iPhone 4 Retina display: -->#}
+{#        <link rel="apple-touch-icon-precomposed" sizes="114x114"#}
+{#              href="{% static 'build/images/fav/apple-touch-icon-114x114-precomposed.png' %}">#}
+{#        <!-- For iPad: -->#}
+{#        <link rel="apple-touch-icon-precomposed" sizes="72x72"#}
+{#              href="{% static 'build/images/fav/apple-touch-icon-72x72-precomposed.png' %}">#}
+{#        <!-- For iPhone: -->#}
+{#        <link rel="apple-touch-icon-precomposed"#}
+{#              href="{% static 'build/images/fav/apple-touch-icon-57x57-precomposed.png' %}">#}
+{#        <!-- IE-10 Metro: -->#}
+{#        <meta name="msapplication-TileColor" content="#000000">#}
+{#        <meta name="msapplication-TileImage" content="{% static 'build/images/fav/favicon.png' %}">#}
 
+		{# Main css dependencies #}
         {% if debug %}
             <!-- Development -->
-            <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+			<link rel="stylesheet" type="text/css" href="{% static 'normalize.css/normalize.css' %}">
         {% else %}
             <!-- Production -->
         {% endif %}
 
-        {% block css %}
-            {# Extra styles for extension #}
-        {% endblock %}
+		{# Extra styles for extension #}
+        {% block css %}{% endblock %}
+
+		{# Moderinzr #}
+		{# Read why it is in the <head>: http://modernizr.com/docs/ #}
+		<script type="text/javascript" src="{% static 'modernizr/modernizr.js' %}"></script>
 
     </head>
     <body>
 
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
 
-        {% block js %}
-        {% endblock %}
+		{# Main javascript dependencies #}
+		{% if debug %}
+            <!-- Development -->
+        {% else %}
+            <!-- Production -->
+        {% endif %}
 
-        {# TODO: change UA-XXXXX-X to be your site's ID. #}
-        <!-- Google Analytics: -->
-        <script>
+		{# Extra javascript files for certain pages #}
+        {% block js %}{% endblock %}
+
+        <!-- Google Analytics: TODO: change UA-XXXXX-X to be your site's ID. -->
+        <script type="text/javascript">
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];

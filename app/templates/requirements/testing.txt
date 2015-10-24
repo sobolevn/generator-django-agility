@@ -5,6 +5,8 @@
 # coverage
 # nose
 # selenium
+# tox
+# pytest
 
 # Style guides and tests:
 # pylint>=1.4.3

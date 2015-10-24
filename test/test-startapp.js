@@ -19,7 +19,8 @@ describe('DjangoAgility:startapp', function () {
         return done(err);
       }
 
-      agility = helpers.createGenerator('django-agility:startapp', ['../../startapp'], djangoAppName);
+      agility = helpers.createGenerator(
+        'django-agility:startapp', ['../../startapp'], djangoAppName);
       helpers.mockPrompt(agility, prompts);
       done();
 
@@ -62,8 +63,9 @@ describe('DjangoAgility:startapp', function () {
 
     agility.run(function(){
       var expected = [];
+      var app = agility.agilityStartApp.appName;
       for (var i = 0; i < files.length; i++){
-        expected.push(path.join(files[i], agility.agilityStartApp.appName));
+        expected.push(path.join(app, files[i], app));
       }
 
       assert.file(expected);

@@ -50,10 +50,11 @@ module.exports = yeoman.generators.Base.extend({
     };
 
     // Generating Django's secret key:
-    // https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
+    // https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key
     function generateSecretKey(length){
       var array = [];
-      var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+';
+      var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk' +
+        'lmnopqrstuvwxyz0123456789!@#$%^&*()-_=+';
 
       for(var i = 0; i < length; i++ ){
         array.push(possible.charAt(Math.floor(Math.random() * possible.length)));
@@ -120,12 +121,14 @@ module.exports = yeoman.generators.Base.extend({
       name: 'projectName',
       message: 'This project needs a name! (required) ',
       default: makeString(this.appname),
-      validate: function(input) { return input !== '' ? true : 'Your project must have a name!'; }
+      validate: function(input) {
+        return input !== '' ? true : 'Your project must have a name!';
+      }
     }, {
       type: 'confirm',
       name: 'projectPublic',
-      message: 'Is it a public project? (Yes - by default)',
-      default: true
+      message: 'Is it a public project? (No - by default)',
+      default: false
     }];
 
     this.prompt(prompts, function(answers){
@@ -177,7 +180,8 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (answers) {
       this.agility.preprocessor = answers.preprocessor;
-      this.agility.preprocessorType = answers.preprocessor ? answers.preprocessorType : this.agility._defaults.none;
+      this.agility.preprocessorType = answers.preprocessor ?
+        answers.preprocessorType : this.agility._defaults.none;
 
       this.config.set('preprocessorType', this.agility.preprocessorType);
 
@@ -188,14 +192,19 @@ module.exports = yeoman.generators.Base.extend({
 
   configuring: {
     styleGuides: function(){
-      this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
-      this.fs.copy(this.templatePath('_setup.cfg'), this.destinationPath('setup.cfg'));
-      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
+      this.fs.copy(this.templatePath('editorconfig'),
+        this.destinationPath('.editorconfig'));
+      this.fs.copy(this.templatePath('_setup.cfg'),
+        this.destinationPath('setup.cfg'));
+      this.fs.copy(this.templatePath('jshintrc'),
+        this.destinationPath('.jshintrc'));
     },
 
     versionControl: function(){
-      this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
-      this.fs.copy(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'));
+      this.fs.copy(this.templatePath('gitignore'),
+        this.destinationPath('.gitignore'));
+      this.fs.copy(this.templatePath('gitattributes'),
+        this.destinationPath('.gitattributes'));
     }
   },
 
@@ -210,26 +219,42 @@ module.exports = yeoman.generators.Base.extend({
 
       var djangoDirectory = 'django_server';
       var djangoFiles = [
-        '__init__.py.tml', 'urls.py.tml', 'wsgi.py.tml', 'settings/__init__.py.tml',
-        'settings/common.py.tml', 'settings/development.py.tml', 'settings/production.py.tml'
+        '__init__.py.tml',
+        'urls.py.tml',
+        'wsgi.py.tml',
+        'settings/__init__.py.tml',
+        'settings/components/__init__.py.tml',
+        'settings/components/common.py.tml',
+        'settings/environments/__init__.py.tml',
+        'settings/environments/development.py.tml',
+        'settings/environments/production.py.tml',
+        'settings/environments/testing.py.tml',
       ];
 
       for (var i = 0; i < djangoFiles.length; i++){
         this.template(
           this.templatePath(path.join(djangoDirectory, djangoFiles[i])),
-          this.destinationPath(destinationFilename(this.agility.projectName, djangoFiles[i]))
+          this.destinationPath(destinationFilename(
+            this.agility.projectName, djangoFiles[i]))
         );
       }
 
-      this.template(this.templatePath('manage.py.tml'), this.destinationPath('manage.py'));
+      this.template(this.templatePath('manage.py.tml'),
+        this.destinationPath('manage.py'));
     },
 
     templates: function(){
       var mainFolder = 'django_templates';
       var templateFiles = [
         '_layouts/base.html',
-        'status_pages/403.html', 'status_pages/404.html', 'status_pages/500.html', 'status_pages/400.html',
-        'txt/crossdomain.xml', 'txt/robots.txt', 'txt/humans.txt', 'txt/sitemap.xml'
+        'status_pages/400.html',
+        'status_pages/403.html',
+        'status_pages/404.html',
+        'status_pages/500.html',
+        'txt/crossdomain.xml',
+        'txt/robots.txt',
+        'txt/humans.txt',
+        'txt/sitemap.xml'
       ];
 
       for (var i = 0; i < templateFiles.length; i++){
@@ -246,7 +271,11 @@ module.exports = yeoman.generators.Base.extend({
     pipRequirements: function(){
       var mainFolder = 'requirements';
       var files = [
-        '_base.txt', '_env.txt', 'development.txt', 'production.txt', 'testing.txt'
+        '_base.txt',
+        '_env.txt',
+        'development.txt',
+        'production.txt',
+        'testing.txt'
       ];
 
       for (var i = 0; i < files.length; i++) {
@@ -258,7 +287,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     developmentConfiguration: function(){
-      var mainFolder = 'secret';
+      var mainFolder = 'config';
       var files = ['config.secret'];
       for (var i = 0; i < files.length; i++) {
         this.template(
@@ -270,12 +299,15 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     packageManagers: function(){
-      this.template(this.templatePath('_package.json'), this.destinationPath('package.json'));
-      this.template(this.templatePath('_bower.json'), this.destinationPath('bower.json'));
+      this.template(this.templatePath('_package.json'),
+        this.destinationPath('package.json'));
+      this.template(this.templatePath('_bower.json'),
+        this.destinationPath('bower.json'));
     },
 
     prepocessors: function(){
-      if (!this.agility.preprocessor || this.agility.preprocessorType === 'none'){
+      if (!this.agility.preprocessor ||
+          this.agility.preprocessorType === 'none'){
         return;
       }
 
@@ -286,24 +318,33 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       var preprocessorFiles = [
-        'main', 'modules/all', 'functions/functions', 'functions/mixins', 'partials/brand', 'partials/fixes'
+        'main',
+        'modules/all',
+        'functions/functions',
+        'functions/mixins',
+        'partials/brand',
+        'partials/fixes'
       ];
 
       for (var i = 0; i < preprocessorFiles.length; i++){
         this.fs.copy(
-          this.templatePath(path.join('preprocessor', preprocessorFiles[i])),
+          this.templatePath(path.join('preprocessor',
+            preprocessorFiles[i])),
           this.destinationPath(destinationFilename(preprocessorFiles[i]))
         );
       }
     },
 
     readmes: function(){
-      this.template(this.templatePath('_README.md'), this.destinationPath('README.md'));
-      this.template(this.templatePath('_CONTRIBUTING.md'), this.destinationPath('CONTRIBUTING.md'));
+      this.template(this.templatePath('_README.md'),
+        this.destinationPath('README.md'));
+      this.template(this.templatePath('_CONTRIBUTING.md'),
+        this.destinationPath('CONTRIBUTING.md'));
     },
 
     manifest: function(){
-      this.fs.copy(this.templatePath('_MANIFEST.in'), this.destinationPath('MANIFEST.in'));
+      this.fs.copy(this.templatePath('_MANIFEST.in'),
+        this.destinationPath('MANIFEST.in'));
     },
 
     statics: function(){
@@ -319,7 +360,8 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     license: function(){
-      this.template(this.templatePath('_LICENSE.md'), this.destinationPath('LICENSE.md'));
+      this.template(this.templatePath('_LICENSE.md'),
+        this.destinationPath('LICENSE.md'));
     }
 
   },
@@ -334,16 +376,26 @@ module.exports = yeoman.generators.Base.extend({
       this.log('Checking for virtualenv.');
       if (process.env.VIRTUAL_ENV) {
         this.log('Virtualenv found:', process.env.VIRTUAL_ENV);
-        this.log('Running', chalk.red('pip install -r ' + this.destinationPath('requirements/development.txt')));
-        this.spawnCommand('pip', ['install', '-r', this.destinationPath('requirements/development.txt')]);
+        this.log('Running', chalk.red('pip install -r ' +
+          this.destinationPath('requirements/development.txt')));
+        this.spawnCommand('pip', ['install', '-r',
+          this.destinationPath('requirements/development.txt')]);
+
+      } else {
+        // It is not a good idea to install python packages into
+        // system's python.
+        this.log('Your python dependencies are not installed,',
+          'because not virtualenv was found. To install it later type:\n',
+          'pip install requirements/development.txt');
       }
 
     } else {
       this.log('You wished to skip installation.');
-      this.log('Run "', chalk.red('npm install & bower install'), '" to install Javascript dependencies.');
-      this.log('Run "', chalk.red('pip install -r ' + this.destinationPath('requirements/development.txt')),
-        '" to install Python dependencies.'
-      );
+      this.log('Run "', chalk.red('npm install & bower install'),
+       '" to install Javascript dependencies.');
+      this.log('Run "', chalk.red('pip install -r ' +
+        this.destinationPath('requirements/development.txt')),
+        '" to install Python dependencies.');
 
     }
 

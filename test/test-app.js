@@ -36,7 +36,7 @@ describe('django-agility:app', function(){
     'MANIFEST.in',
     'README.md',
     'CONTRIBUTING.md',
-    'secret/config.secret',
+    'config/config.secret',
 
     // Package managers:
     'bower.json',
@@ -103,9 +103,12 @@ describe('django-agility:app', function(){
 
     // settings:
     'settings/__init__.py',
-    'settings/common.py',
-    'settings/development.py',
-    'settings/production.py'
+    'settings/components/__init__.py',
+    'settings/components/common.py',
+    'settings/environments/__init__.py',
+    'settings/environments/development.py',
+    'settings/environments/production.py',
+    'settings/environments/testing.py'
   ];
 
   before(function(done){
@@ -119,7 +122,8 @@ describe('django-agility:app', function(){
         return done(err);
       }
 
-      agility = helpers.createGenerator('django-agility:app', ['../../app'], false, options);
+      agility = helpers.createGenerator(
+        'django-agility:app', ['../../app'], false, options);
       done();
 
     }.bind(this));
